@@ -263,7 +263,7 @@ export default function JourneyHistory() {
                             )}
                           </div>
                         </div>
-                        <Button
+                        {/* <Button
                           variant="ghost"
                           size="sm"
                           onClick={() => toggleJourneyExpansion(journey.id)}
@@ -274,12 +274,11 @@ export default function JourneyHistory() {
                               expandedJourneys.has(journey.id) ? "rotate-180" : ""
                             }`}
                           />
-                        </Button>
+                        </Button> */}
                       </div>
                     </CardHeader>
-
+{/* 
                     <CardContent className="pt-0">
-                      {/* Financial Summary */}
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
                         <div className="bg-blue-50 rounded-lg p-3 text-center">
                           <p className="text-xs text-blue-600 font-medium">Initial Amount</p>
@@ -299,7 +298,6 @@ export default function JourneyHistory() {
                         </div>
                       </div>
 
-                      {/* Expanded Content */}
                       {expandedJourneys.has(journey.id) && (
                         <motion.div
                           initial={{ opacity: 0, height: 0 }}
@@ -327,7 +325,6 @@ export default function JourneyHistory() {
                             </div>
                           </div>
 
-                          {/* Transactions */}
                           {journey.transactions && journey.transactions.length > 0 && (
                             <div>
                               <h4 className="font-semibold text-gray-800 mb-3 flex items-center">
@@ -381,7 +378,6 @@ export default function JourneyHistory() {
                             </div>
                           )}
 
-                          {/* No transactions message */}
                           {(!journey.transactions || journey.transactions.length === 0) && (
                             <div className="text-center py-4">
                               <FileText className="w-8 h-8 mx-auto text-gray-300 mb-2" />
@@ -390,7 +386,7 @@ export default function JourneyHistory() {
                           )}
                         </motion.div>
                       )}
-                    </CardContent>
+                    </CardContent> */}
                   </Card>
                 </motion.div>
               ))}
