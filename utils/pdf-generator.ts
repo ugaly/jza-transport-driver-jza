@@ -1258,8 +1258,6 @@
 //   return doc.output("blob")
 // }
 
-
-
 import { jsPDF } from "jspdf"
 import autoTable from "jspdf-autotable"
 
@@ -1271,6 +1269,7 @@ interface Transaction {
   amount: string
 }
 
+// Updated Journey interface to match your actual type (removed status property)
 interface Journey {
   id: string
   journey_name: string
@@ -1279,7 +1278,6 @@ interface Journey {
   start_date: string
   end_date: string
   total_trip_amount: string
-  status: string
 }
 
 interface ReportData {
@@ -1298,12 +1296,10 @@ const loadImageAsBase64 = async (url: string): Promise<string> => {
     img.onload = () => {
       const canvas = document.createElement("canvas")
       const ctx = canvas.getContext("2d")
-
       const width = 400
       const height = 400
       canvas.width = width
       canvas.height = height
-
       ctx?.drawImage(img, 0, 0, width, height)
       const dataURL = canvas.toDataURL("image/png")
       resolve(dataURL)
@@ -1392,15 +1388,8 @@ export const generateJourneyReport = async (data: ReportData): Promise<Blob> => 
   addWatermark(doc)
 
   // Modern header with gradient effect
-  // doc.setFillColor(colors.primary[0], colors.primary[1], colors.primary[2])
-  // doc.rect(0, 0, 210, 50, "F")
-
-  // // Add subtle gradient effect
-  // doc.setFillColor(colors.secondary[0], colors.secondary[1], colors.secondary[2])
-  // doc.rect(0, 0, 210, 25, "F")
-
   doc.setFillColor(colors.primary[0], colors.primary[1], colors.primary[2])
-doc.rect(0, 0, 210, 50, "F")
+  doc.rect(0, 0, 210, 50, "F")
 
   // Logo handling with modern design
   try {
@@ -1651,24 +1640,19 @@ doc.rect(0, 0, 210, 50, "F")
     // Enhanced no transactions message
     doc.setFillColor(colors.lightGray[0], colors.lightGray[1], colors.lightGray[2])
     doc.rect(20, yPosition, 170, 25, "F")
+
     doc.setTextColor(colors.gray[0], colors.gray[1], colors.gray[2])
     doc.setFontSize(14)
     doc.setFont("helvetica", "italic")
     doc.text("No transactions recorded yet", 25, yPosition + 15)
+
     yPosition += 35
   }
 
   // Modern footer with gradient
-   const pageHeight = doc.internal.pageSize.height
-  // doc.setFillColor(colors.primary[0], colors.primary[1], colors.primary[2])
-  // doc.rect(0, pageHeight - 30, 210, 30, "F")
-
-  // doc.setFillColor(colors.secondary[0], colors.secondary[1], colors.secondary[2])
-  // doc.rect(0, pageHeight - 15, 210, 15, "F")
-
-
+  const pageHeight = doc.internal.pageSize.height
   doc.setFillColor(colors.primary[0], colors.primary[1], colors.primary[2])
-doc.rect(0, pageHeight - 30, 210, 30, "F")
+  doc.rect(0, pageHeight - 30, 210, 30, "F")
 
   // Footer content
   doc.setTextColor(colors.white[0], colors.white[1], colors.white[2])
