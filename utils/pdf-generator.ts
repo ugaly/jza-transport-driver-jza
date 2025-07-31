@@ -1261,8 +1261,9 @@
 import { jsPDF } from "jspdf"
 import autoTable from "jspdf-autotable"
 
+// Updated Transaction interface to match your actual type (id as number)
 interface Transaction {
-  id: string
+  id: number // Changed from string to number
   transaction_date: string
   description: string
   transaction_type: "INCOME" | "EXPENSE"
