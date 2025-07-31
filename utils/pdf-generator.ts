@@ -1269,9 +1269,9 @@ interface Transaction {
   amount: string
 }
 
-// Updated Journey interface to match your actual type (removed status property)
+// Updated Journey interface to match your actual type (id as number)
 interface Journey {
-  id: string
+  id: number // Changed from string to number
   journey_name: string
   trip_from: string
   trip_to: string
